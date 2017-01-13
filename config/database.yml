@@ -25,5 +25,5 @@ test:
 production:
   <<: *default
   adapter:  postgresql
-  database: sample_app_production
+  database: db/production.pg
 
