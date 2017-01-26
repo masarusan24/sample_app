@@ -25,7 +25,7 @@ test:
 production:
   adapter: postgresql
   encoding: utf8
-  database: project_production
+  database: sample_app
   pool: 5
   username:
   password:
