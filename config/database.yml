@@ -23,9 +23,5 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: postgresql
-  encoding: utf8
-  database: sample_app
-  pool: 5
-  username:
-  password:
+  <<: *default
+  database: db/production.sqlite3
