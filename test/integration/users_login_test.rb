@@ -39,4 +39,14 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty? # フラッシュメッセージが空になっている
   end
   
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    assert_not_nil cookies['remember_token']
+  end
+  
+  test "login without remembering" do
+    log_in_as(@user, remember_me: '0')
+    assert_nil cookies['remember_token']
+  end
+  
 end
