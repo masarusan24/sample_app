@@ -12,6 +12,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  # 未ログイン状態の時インデックスに遷移するテスト
+  test "should redirect index when not logged in" do
+    get users_path
+    assert_redirected_to login_url
+  end
+  
   # 別ユーザの編集画面にアクセスしようとするとルートパスへ遷移するテスト
   test "should redirect edit when logged in wrong user" do
     log_in_as(@other_user)
