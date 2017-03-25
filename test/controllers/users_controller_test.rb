@@ -35,6 +35,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
   
+  # WEBから直接PATCHリクエストを送信しても管理者権限を付与しない
   test "should not allow the addmin attribute to be edited via the web" do
     log_in_as(@other_user)
     assert_not @other_user.admin?
@@ -43,6 +44,23 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                                   password_confirmation: @other_user.password,
                                   addmin: true }  }
     assert_not @other_user.reload.admin?
+  end
+  
+  # 未ログインユーザはログイン画面にリダイレクトする
+  test "should redirect destroy when not logged in" do
+    assert_no_difference 'User.count' do
+      delete user_path(@user)
+    end
+    assert_redirected_to login_url
+  end
+
+  # 非管理者ユーザはルート画面にリダイレクトする
+  test "should redirect destroy when logged in as non-admin" do
+    log_in_as(@other_user)
+    assert_no_difference 'User.count' do
+      delete user_path(@user)
+    end
+    assert_redirected_to root_url
   end
 
 end

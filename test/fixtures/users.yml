@@ -2,6 +2,7 @@ masato:
   name: Masato Ito
   email: masarusan24@hogehoge.com
   password_digest: <%= User.digest('password') %>
+  admin: true
   
 kaori:
   name: Kaori Tada
