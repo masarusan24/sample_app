@@ -73,6 +73,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not masato.following?(kaori)
     masato.follow(kaori)
     assert masato.following?(kaori)
+    assert kaori.followers.include?(masato)
     masato.unfollow(kaori)
     assert_not masato.following?(kaori)
   end
