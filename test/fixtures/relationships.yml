@@ -1,0 +1,15 @@
+one:
+  follower: masato
+  followed: ichoro
+
+two:
+  follower: masato
+  followed: jiro
+  
+three:
+  follower: ichoro
+  followed: masato
+  
+four:
+  follower: kaori
+  followed: masato
