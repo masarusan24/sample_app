@@ -77,4 +77,22 @@ class UserTest < ActiveSupport::TestCase
     masato.unfollow(kaori)
     assert_not masato.following?(kaori)
   end
+  
+  test "feed should have the right posts" do
+    masato = users(:masato)
+    kaori = users(:kaori)
+    ichiro = users(:ichiro)
+    # フォローしているユーザの投稿を確認
+    ichiro.microposts.each do |post_following|
+      assert masato.feed.include?(post_following)
+    end
+    # 自分自身の投稿を確認
+    masato.microposts.each do |post_self|
+      assert masato.feed.include?(post_self)
+    end
+    # フォローしていないユーザの投稿を確認
+    kaori.microposts.each do |post_followed|
+      assert_not masato.feed.include?(post_followed)
+    end
+  end
 end
