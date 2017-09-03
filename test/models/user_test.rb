@@ -91,8 +91,8 @@ class UserTest < ActiveSupport::TestCase
       assert masato.feed.include?(post_self)
     end
     # フォローしていないユーザの投稿を確認
-    kaori.microposts.each do |post_followed|
-      assert_not masato.feed.include?(post_followed)
+    kaori.microposts.each do |post_unfollowed|
+      assert_not masato.feed.include?(post_unfollowed)
     end
   end
 end
